@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/posts" name="PostInformation" xmlns="http://ws.apache.org/ns/synapse">
+  <resource methods="GET" protocol="http">
+    <inSequence>
+      <log description="LOG" level="custom">
+        <property name="LOG:HEAD" value="******###### Posts logs head #######*****"/>
+      </log>
+      <call>
+        <endpoint key="gov:/endpoints/PostsEndpoint.xml"/>
+      </call>
+      <log description="Log" level="custom">
+        <property name="LOG:BODY" value="******###### Endpoint Response #######*****"/>
+      </log>
+      <respond/>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+  </resource>
+</api>
