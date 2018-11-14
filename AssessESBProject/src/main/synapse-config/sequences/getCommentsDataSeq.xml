@@ -5,6 +5,6 @@
   </call>
   <property expression="//jsonArray" name="commentsData" scope="default" type="OM"/>
   <log level="custom">
-    <property expression="$ctx:commentsData" name="######## --- Comments Json Data ---########"/>
+    <property expression="$ctx:commentsData" name="######## Comments Json Data ########"/>
   </log>
 </sequence>

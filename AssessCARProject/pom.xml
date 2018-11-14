@@ -14,6 +14,7 @@
   <name>AssessCARProject</name>
   <description>AssessCARProject</description>
   <properties>
+    <co.ke.telkom.wso2assessmentproject.resource_._MeargeDataEndpoint>capp/EnterpriseServiceBus</co.ke.telkom.wso2assessmentproject.resource_._MeargeDataEndpoint>
     <co.ke.telkom.wso2assessmentproject.resource_._InformationEndpoint>capp/EnterpriseServiceBus</co.ke.telkom.wso2assessmentproject.resource_._InformationEndpoint>
     <co.ke.telkom.AssessESBProject.sequence_._getCommentsDataSeq>capp/EnterpriseServiceBus</co.ke.telkom.AssessESBProject.sequence_._getCommentsDataSeq>
     <co.ke.telkom.wso2assessmentproject.resource_._PostsEndpoint>capp/EnterpriseServiceBus</co.ke.telkom.wso2assessmentproject.resource_._PostsEndpoint>
@@ -51,6 +52,12 @@
       <artifactId>getCommentsDataSeq</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>co.ke.telkom.wso2assessmentproject.resource</groupId>
+      <artifactId>MeargeDataEndpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
     </dependency>
   </dependencies>
   <repositories>

@@ -35,20 +35,61 @@
       <log level="custom">
         <property expression="$ctx:postData" name="######## --- Posts Json Data ---########"/>
       </log>
-      <foreach expression="$body/jsonArray/jsonElement" id="foreach_1">
-        <sequence>
-          <property expression="//id" name="Name" scope="default" type="STRING"/>
-          <log level="custom">
-            <property expression="//id" name="LOG:POST_ID"/>
-          </log>
-          <!-- 					<sequence key="getCommentsDataSeq" /> -->
-        </sequence>
-      </foreach>
+      <iterate expression="$body/jsonArray/jsonElement" id="getPosts" preservePayload="true">
+        <target>
+          <sequence>
+            <property expression="//id" name="postId" scope="default" type="STRING"/>
+            <log level="custom">
+              <property expression="$ctx:postId" name="LOG:POST_ID"/>
+            </log>
+            <property expression="$ctx:postId" name="uri.var.resourceId"
+              scope="default" type="STRING"/>
+            <property description="Setting http method to GET"
+              name="HTTP_METHOD" scope="axis2" type="STRING" value="GET"/>
+            <call>
+              <endpoint key="gov:/endpoints/MeargeDataEndpoint.xml"/>
+            </call>
+          </sequence>
+        </target>
+      </iterate>
+      <log level="custom">
+        <property name="LOG:AGGREGATE" value="*****#####-START-######****#"/>
+      </log>
+      <aggregate id="getPosts">
+        <completeCondition>
+          <messageCount max="-1" min="-1"/>
+        </completeCondition>
+        <onComplete expression="//jsonArray">
+          <log level="full"/>
+          <payloadFactory media-type="json">
+            <format>
+
+							{"posts": $1}
+
+						</format>
+            <args>
+              <arg evaluator="xml" expression="$body"/>
+            </args>
+          </payloadFactory>
+          <send/>
+        </onComplete>
+      </aggregate>
+      <respond/>
+      <!-- <foreach expression="$body/jsonArray/jsonElement" id="foreach_1"> -->
+      <!-- <sequence> -->
+      <!-- <property expression="//id" name="Name" scope="default" -->
+      <!-- type="STRING" /> -->
+      <!-- <log level="custom"> -->
+      <!-- <property expression="//id" name="LOG:POST_ID" /> -->
+      <!-- </log> -->
+      <!-- <sequence key="getCommentsDataSeq" /> -->
+      <!-- </sequence> -->
+      <!-- </foreach> -->
       <!-- <log description="Log" level="custom"> -->
       <!-- <property name="LOG:BODY" -->
       <!-- value="******###### Endpoint Response #######*****" /> -->
       <!-- </log> -->
-      <!-- 			<respond /> -->
+      <!-- <respond /> -->
     </inSequence>
     <outSequence/>
     <faultSequence/>
