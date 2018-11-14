@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="getCommentsDataSeq" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+  <call>
+    <endpoint key="gov:/endpoints/CommentsEndpoint.xml"/>
+  </call>
+  <property expression="//jsonArray" name="commentsData" scope="default" type="OM"/>
+  <log level="custom">
+    <property expression="$ctx:commentsData" name="######## --- Comments Json Data ---########"/>
+  </log>
+</sequence>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<api context="/posts" name="PostInformation" xmlns="http://ws.apache.org/ns/synapse">
+<api context="/info" name="PostInformation" xmlns="http://ws.apache.org/ns/synapse">
   <resource methods="GET" protocol="http">
     <inSequence>
       <log description="LOG" level="custom">
@@ -12,6 +12,43 @@
         <property name="LOG:BODY" value="******###### Endpoint Response #######*****"/>
       </log>
       <respond/>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/blog">
+    <inSequence>
+      <log description="LOG" level="custom">
+        <property name="LOG:HEAD" value="******###### Load Resource Type #######*****"/>
+      </log>
+      <property action="remove" name="REST_URL_POSTFIX" scope="axis2"/>
+      <!-- Get all posts -->
+      <property description="Setting uri.var.Resources Parameter"
+        name="uri.var.resource" scope="default" type="STRING" value="posts"/>
+      <!-- <property description="Setting http method to GET" name="HTTP_METHOD" -->
+      <!-- scope="axis2" type="STRING" value="GET" /> -->
+      <call>
+        <endpoint key="gov:/endpoints/InformationEndpoint.xml"/>
+      </call>
+      <property expression="//jsonArray" name="postData" scope="default" type="OM"/>
+      <!-- <property name="postData" expression="$body/jsonObject" /> -->
+      <log level="custom">
+        <property expression="$ctx:postData" name="######## --- Posts Json Data ---########"/>
+      </log>
+      <foreach expression="$body/jsonArray/jsonElement" id="foreach_1">
+        <sequence>
+          <property expression="//id" name="Name" scope="default" type="STRING"/>
+          <log level="custom">
+            <property expression="//id" name="LOG:POST_ID"/>
+          </log>
+          <!-- 					<sequence key="getCommentsDataSeq" /> -->
+        </sequence>
+      </foreach>
+      <!-- <log description="Log" level="custom"> -->
+      <!-- <property name="LOG:BODY" -->
+      <!-- value="******###### Endpoint Response #######*****" /> -->
+      <!-- </log> -->
+      <!-- 			<respond /> -->
     </inSequence>
     <outSequence/>
     <faultSequence/>

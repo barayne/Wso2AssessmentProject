@@ -2,4 +2,7 @@
     <artifact name="PostInformation" groupId="co.ke.telkom.AssessESBProject.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/api/PostInformation.xml</file>
     </artifact>
+    <artifact name="getCommentsDataSeq" groupId="co.ke.telkom.AssessESBProject.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/getCommentsDataSeq.xml</file>
+    </artifact>
 </artifacts>

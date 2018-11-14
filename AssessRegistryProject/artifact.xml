@@ -6,4 +6,18 @@
             <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
         </item>
     </artifact>
+    <artifact name="CommentsEndpoint" groupId="co.ke.telkom.wso2assessmentproject.resource" version="1.0.0" type="registry/resource" serverRole="GovernanceRegistry">
+        <item>
+            <file>CommentsEndpoint.xml</file>
+            <path>/_system/governance/endpoints</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
+    <artifact name="InformationEndpoint" groupId="co.ke.telkom.wso2assessmentproject.resource" version="1.0.0" type="registry/resource" serverRole="GovernanceRegistry">
+        <item>
+            <file>InformationEndpoint.xml</file>
+            <path>/_system/governance/endpoints</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
 </artifacts>
